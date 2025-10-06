@@ -1,5 +1,8 @@
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 5, 4, 5]
+import streamlit as st
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+y = [1.5, 3.1, 3.6, 4.2, 4.8, 5.0, 5.6, 5.5, 6.3, 6.0]
 
 def mean(values):
     return sum(values) / len(values)
@@ -27,11 +30,29 @@ r2 = 1 - sum((yi - ypi) ** 2 for yi, ypi in zip(y, y_pred)) / sum((yi - mean(y))
 for xi, yi in zip(x, y):
    print(f"horas estudadas: {xi}, nota obtida: {yi}")
 
-print(f"Média: xm = {mean(x)}, ym = {mean(y)}")
-print(f"Variância: Var(x) = {variance(x)}")
-print(f"Covariância: Cov(x, y) = {covariance(x, y)}")
-print(f"Coeficiente de inclinação (b1): {b1}")
-print(f"Coeficiente intercepto (b0): {b0}")
-print(f"Valores preditos: {y_pred}")
-print(f"Erro Quadrático Médio (MSE): {mse}")
-print(f"Coeficiente de Determinação (R²): {r2}")
+st.table({
+    "Horas Estudadas": x,
+    "Nota Obtida": y,
+    "Nota Predita": y_pred
+})
+
+st.write(f"Média: xm = {mean(x)}, ym = {mean(y)}")
+st.write(f"Variância: Var(x) = {variance(x)}")
+st.write(f"Covariância: Cov(x, y) = {covariance(x, y)}")
+st.write(f"Coeficiente de inclinação (b1): {b1}")
+st.write(f"Coeficiente intercepto (b0): {b0}")
+st.write(f"Erro Quadrático Médio (MSE): {mse}")
+st.write(f"Coeficiente de Determinação (R²): {r2}")
+
+
+plt.scatter(x, y, color='blue', label='Dados Reais')
+plt.plot(x, y_pred, color='red', label='Linha de Regressão')
+plt.xlabel('Horas Estudadas')
+plt.ylabel('Nota Obtida')
+plt.title('Regressão Linear Simples')
+plt.legend()
+
+info = f'β₀ = {b0:.2f}\nβ₁ = {b1:.2f}\nR² = {r2:.2f}\nMSE = {mse:.2f}'
+plt.text(6.5, 2.0, info, fontsize=11, bbox=dict(facecolor='white', alpha=0.7))
+
+st.pyplot(plt)
