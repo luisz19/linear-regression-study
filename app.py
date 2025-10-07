@@ -98,8 +98,4 @@ st.text("Retomando ao R², por a Covariancia não ser padronizada e não dizer a
 st.latex(r"R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}")
 st.text(f"O coeficiente de determinação (R²) do modelo é {r2:.2f}. Isso significa que aproximadamente {r2*100:.2f}% da variação nas notas obtidas pode ser explicada pelas horas estudadas.")
 
-st.subheader("MSE (Mean Squared Error)")
-st.text("O Erro Quadrático Médio é uma métrica que quantifica a diferença entre os valores reais e os valores preditos pelo modelo. Um MSE menor indica um modelo mais preciso.")
-st.latex(r"MSE = \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{n}")
-st.text(f"O Erro Quadrático Médio (MSE) do modelo é {mse:.2f}. Isso indica que em média, as previsões do modelo estão a aproximadamente {mse:.2f} pontos quadrados de distância dos valores reais.")
 
